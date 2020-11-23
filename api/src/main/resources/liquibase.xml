@@ -13,17 +13,17 @@
         for a list of supported elements and attributes
     -->
  
- 	<!-- Uncomment the changeset below if you want to make the Item class persistable, see also Item and PatientqueuappDaoTest -->
+ 	<!-- Uncomment the changeset below if you want to make the Item class persistable, see also Item and PatientqueueappDaoTest -->
  	<!--
-	<changeSet id="patientqueuapp-2016-08-02-12-21" author="raff">
+	<changeSet id="patientqueueapp-2016-08-02-12-21" author="raff">
 		<preConditions onFail="MARK_RAN">
-			<not><tableExists tableName="patientqueuapp_item"/></not>
+			<not><tableExists tableName="patientqueueapp_item"/></not>
 		</preConditions>
 		<comment>
-			Creating the patientqueuapp_item table
+			Creating the patientqueueapp_item table
 		</comment>
-		<createTable tableName="patientqueuapp_item">
-			<column name="patientqueuapp_item_id" type="int" autoIncrement="true">
+		<createTable tableName="patientqueueapp_item">
+			<column name="patientqueueapp_item_id" type="int" autoIncrement="true">
 				<constraints primaryKey="true" nullable="false"/>
 			</column>
 			<column name="uuid" type="char(38)">
@@ -32,8 +32,36 @@
 			<column name="owner" type="int" />
 			<column name="description" type="varchar(255)" />
 		</createTable>
-        <addForeignKeyConstraint constraintName="patientqueuapp_item_owner_fk" baseTableName="patientqueuapp_item" baseColumnNames="owner"  referencedTableName="users"
+        <addForeignKeyConstraint constraintName="patientqueueapp_item_owner_fk" baseTableName="patientqueueapp_item" baseColumnNames="owner"  referencedTableName="users"
                                  referencedColumnNames="user_id" />
     </changeSet> -->
+	<changeSet id="patientqueueapp-2020-09-24-07-44" author="akwatuha">
+		<preConditions onFail="MARK_RAN">
+			<not><tableExists tableName="registration_fee"/></not>
+		</preConditions>
+		<comment>
+			Creating the registration_fee table
+		</comment>
+		<createTable tableName="registration_fee">
+			<column name="registration_fee_id" type="int" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false"/>
+			</column>
+			<column name="fee" type="decimal(19,2)">
+				<constraints nullable="false" unique="true"></constraints>
+			</column>
+			<column name="patient_id" type="int(11)">
+				<constraints nullable="false" ></constraints>
+			</column>
+			<column name="created_by" type="int(11)">
+				<constraints nullable="false" ></constraints>
+			</column>
+			<column name="created_on" type="datetime">
+				<constraints nullable="false" ></constraints>
+			</column>
+		</createTable>
+        <addForeignKeyConstraint constraintName="initialpatientqueueapp_patient_fk"
+		baseTableName="registration_fee" baseColumnNames="patient_id"  referencedTableName="patient"
+        referencedColumnNames="patient_id" />
+    </changeSet> 
  
 </databaseChangeLog>

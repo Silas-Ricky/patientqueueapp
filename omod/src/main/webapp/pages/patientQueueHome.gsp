@@ -3,11 +3,11 @@
 %>
 
     <div class="ke-page-sidebar">
-        ${ ui.includeFragment("kenyaemr", "patient/patientSearchForm", [ defaultWhich: "checked-in" ]) }
+        ${ ui.includeFragment("kenyaemr", "patient/patientSearchForm", [ defaultWhich: "all" ]) }
     </div>
 
     <div class="ke-page-content">
-        ${ ui.includeFragment("kenyaemr", "patient/patientSearchResults", [ pageProvider: "patientqueuapp", page: "patientCategory" ]) }
+        ${ ui.includeFragment("kenyaemr", "patient/patientSearchResults", [ pageProvider: "initialpatientqueueapp", page: "patientCategory" ]) }
     </div>
     <script type="text/javascript">
         jQuery(function() {

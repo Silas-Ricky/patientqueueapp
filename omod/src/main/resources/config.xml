@@ -6,13 +6,13 @@
 	<id>${project.parent.artifactId}</id>
 	<name>${project.parent.name}</name>
 	<version>${project.parent.version}</version>
-	<package>org.openmrs.module.patientqueuapp</package>
+	<package>org.openmrs.module.initialpatientqueueapp</package>
 	<author>HealthIT</author>
 	<description>
-			${project.parent.description}
+			Initial patient queueing when seen at registration desk
 	</description>
 
-	<activator>org.openmrs.module.patientqueuapp.PatientqueuappActivator</activator>
+	<activator>org.openmrs.module.initialpatientqueueapp.InitialPatientqueueappActivator</activator>
 	
 	<!-- <updateURL>https://modules.openmrs.org/modules/download/@MODULE_ID@/update.rdf</updateURL> -->
 	<!-- /Base Module Properties -->
@@ -22,16 +22,39 @@
 	<!-- Extensions -->
 	<extension>
 		<point>org.openmrs.admin.list</point>
-		<class>org.openmrs.module.patientqueuapp.extension.html.AdminList</class>
+		<class>org.openmrs.module.initialpatientqueueapp.extension.html.AdminList</class>
 	</extension>
 	<require_modules>
 		<require_module version="${kenyaemrVersion}">org.openmrs.module.kenyaemr</require_module>
 		<require_module version="${hospitalcoreVersion}">org.openmrs.module.hospitalcore</require_module>
+		<require_module version="${ehrconfigsVersion}">org.openmrs.module.ehrconfigs</require_module>
 	</require_modules>
 	<aware_of_modules>
 		<aware_of_module>org.openmrs.module.legacyui</aware_of_module>
 	</aware_of_modules>
-	
+
+	<globalProperty>
+		<property>${project.parent.artifactId}.childLessThanFiveYearRegistrationFee</property>
+		<defaultValue>0</defaultValue>
+		<description>
+			Registration Fee for children under 5 years
+		</description>
+	</globalProperty>
+
+	<globalProperty>
+		<property>${project.parent.artifactId}.specialClinicRegistrationFee</property>
+		<defaultValue>0</defaultValue>
+		<description>
+			Registration Fee for special clinic
+		</description>
+	</globalProperty>
+	<globalProperty>
+		<property>${project.parent.artifactId}.identifier_prefix</property>
+		<defaultValue>BDHOS</defaultValue>
+		<description>
+			Patient identifier prefix
+		</description>
+	</globalProperty>
 	
 	<!-- AOP
 	<advice>
@@ -87,7 +110,12 @@
 	</servlet>
 	-->
 	<!-- /Servlets -->
-	
+	<!-- Maps hibernate file's, if present -->
+	<mappingFiles>
+
+		RegistrationFee.hbm.xml
+
+	</mappingFiles>
 	
 	<!-- Internationalization -->
 	<!-- All message codes should start with @MODULE_ID@.* -->

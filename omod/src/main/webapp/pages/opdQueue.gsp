@@ -3,8 +3,8 @@
 	
     ui.includeCss("uicommons", "datatables/dataTables_jui.css")
     ui.includeCss("coreapps", "patientsearch/patientSearchWidget.css")
-	ui.includeCss("patientqueuapp", "onepcssgrid.css")
-	ui.includeCss("patientqueuapp", "main.css")
+	ui.includeCss("patientqueueapp", "onepcssgrid.css")
+	ui.includeCss("patientqueueapp", "main.css")
 	
     ui.includeJavascript("ehrcashier", "moment.js")
     ui.includeJavascript("ehrcashier", "jquery.dataTables.min.js")

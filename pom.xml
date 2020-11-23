@@ -9,18 +9,18 @@
 	</parent>
 
 	<groupId>org.openmrs.module</groupId>
-	<artifactId>patientqueuapp</artifactId>
+	<artifactId>initialpatientqueueapp</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>Patientqueuapp</name>
-	<description>KenyaEMR patient queue app</description>
+	<name>Initial Patient Queue App</name>
+	<description>EHR Initial patient queue app</description>
 
 	<url>https://wiki.openmrs.org/x/FQ4z</url>
 
 	<scm>
-		<connection>scm:git:git@github.com:openmrs/openmrs-module-patientqueuapp.git</connection>
-		<developerConnection>scm:git:git@github.com:openmrs/openmrs-module-patientqueuapp.git</developerConnection>
-		<url>https://github.com/openmrs/openmrs-module-patientqueuapp/</url>
+		<connection>scm:git:https://github.com/uonafya/initialpatientqueueapp.git</connection>
+		<developerConnection>scm:git:https://github.com/uonafya/initialpatientqueueapp.git</developerConnection>
+		<url>https://github.com/uonafya/initialpatientqueueapp.git</url>
 		<tag>HEAD</tag>
 	</scm>
 
@@ -110,6 +110,12 @@
 				<groupId>org.openmrs.module</groupId>
 				<artifactId>kenyacore-api</artifactId>
 				<version>${kenyacoreVersion}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
+				<artifactId>ehrconfigs-api</artifactId>
+				<version>${ehrconfigsVersion}</version>
 				<scope>provided</scope>
 			</dependency>
 
@@ -204,7 +210,7 @@
 				<groupId>org.openmrs.module</groupId>
 				<artifactId>hospitalcore-api</artifactId>
 				<version>${hospitalcoreVersion}</version>
-				<scope>compile</scope>
+				<scope>provided</scope>
 
 			</dependency>
 
@@ -255,5 +261,6 @@
 		<logicVersion>0.5.2</logicVersion>
 		<uilibraryVersion>2.0.4</uilibraryVersion>
 		<hospitalcoreVersion>1.0.0-SNAPSHOT</hospitalcoreVersion>
+		<ehrconfigsVersion>1.0.0-SNAPSHOT</ehrconfigsVersion>
     </properties>
 </project>

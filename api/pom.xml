@@ -3,14 +3,14 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.openmrs.module</groupId>
-		<artifactId>patientqueuapp</artifactId>
+		<artifactId>initialpatientqueueapp</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>patientqueuapp-api</artifactId>
+	<artifactId>initialpatientqueueapp-api</artifactId>
 	<packaging>jar</packaging>
-	<name>Patientqueuapp API</name>
-	<description>API project for Patientqueuapp</description>
+	<name>Initial Patient Queue App API</name>
+	<description>API project for Patient Queue App</description>
 	<dependencies>
 		<!-- Begin OpenMRS modules -->
 		<dependency>
@@ -124,6 +124,10 @@
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>hospitalcore-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.openmrs.module</groupId>
+			<artifactId>ehrconfigs-api</artifactId>
 		</dependency>
 	</dependencies>
 </project>

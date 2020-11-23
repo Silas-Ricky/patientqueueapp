@@ -23,73 +23,39 @@
   		    http://www.springframework.org/schema/util
   		    http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 
-    <context:component-scan base-package="org.openmrs.module.patientqueuapp" />
+    <context:component-scan base-package="org.openmrs.module.initialpatientqueueapp" />
 
-    <bean id="patientqueuapp.app.patientqueuapp.queue" factory-bean="kenyacore.appFactoryBean" factory-method="createInstance">
-        <constructor-arg value="patientqueuapp.queue" />
-        <constructor-arg value="Patient Queue" />
-        <constructor-arg value="patientqueuapp/patientQueueHome.page" />
-        <constructor-arg value="patientqueuapp:apps/queue.png" />
-        <constructor-arg value="2000" />
+    <bean id="initialpatientqueueapp.app.initialpatientqueueapp.queue" factory-bean="kenyacore.appFactoryBean" factory-method="createInstance">
+        <constructor-arg value="initialpatientqueueapp.queue" />
+        <constructor-arg value="Queue Patient" />
+        <constructor-arg value="initialpatientqueueapp/patientQueueHome.page" />
+        <constructor-arg value="initialpatientqueueapp:apps/queue.png" />
+        <constructor-arg value="1500" />
     </bean>
-    <bean id="patientqueuapp.app.opd" factory-bean="kenyacore.appFactoryBean" factory-method="createInstance">
-        <constructor-arg value="patientqueuapp.opd" />
-        <constructor-arg value="OPD" />
-        <constructor-arg value="patientqueuapp/opdQueue.page" />
-        <constructor-arg value="patientqueuapp:apps/doctor.png" />
-        <constructor-arg value="2010" />
-    </bean>
-    <bean id="patientqueuapp.config.form" class="org.openmrs.module.kenyacore.form.FormConfiguration">
+    <bean id="initialpatientqueueapp.config.form" class="org.openmrs.module.kenyacore.form.FormConfiguration">
         <property name="commonPatientForms">
             <set>
             </set>
         </property>
         <property name="commonVisitForms">
             <set>
-                <ref bean="patientqueuapp.common.form.queue" />
+                <ref bean="initialpatientqueueapp.common.form.queue" />
             </set>
         </property>
     </bean>
-    <bean id="patientqueuapp.common.form.queue" class="org.openmrs.module.kenyacore.form.FormDescriptor">
+    <bean id="initialpatientqueueapp.common.form.queue" class="org.openmrs.module.kenyacore.form.FormDescriptor">
         <property name="targetUuid" value="f025e43a-b470-11ea-8a58-e7fc06ee7901" />
         <property name="apps">
             <set>
-                <ref bean="patientqueuapp.app.patientqueuapp.queue" />
+                <ref bean="initialpatientqueueapp.app.initialpatientqueueapp.queue" />
             </set>
         </property>
         <property name="icon" value="kenyaui:forms/generic.png" />
-        <property name="htmlform" value="patientqueuapp:queue.html" />
+        <property name="htmlform" value="initialpatientqueueapp:queue.html" />
         <property name="order" value="1000" />
     </bean>
 
-    <!-- Wraps PatientqueuappService methods in DB transactions and OpenMRS interceptors,
+    <!-- Wraps InitialPatientqueueappService methods in DB transactions and OpenMRS interceptors,
     which set audit info like dateCreated, changedBy, etc.-->
-    <bean id="patientqueuapp.PatientqueuappService"
-            class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
-        <property name="transactionManager">
-            <ref bean="transactionManager" />
-        </property>
-        <property name="target">
-            <bean class="org.openmrs.module.patientqueuapp.api.impl.PatientqueuappServiceImpl">
-                <property name="dao" ref="patientqueuapp.PatientqueuappDao" />
-            </bean>
-        </property>
-        <property name="preInterceptors">
-            <ref bean="serviceInterceptors" />
-        </property>
-        <property name="transactionAttributeSource">
-            <ref bean="transactionAttributeSource" />
-        </property>
-    </bean>
-
-    <!-- Adds PatientqueuappService to OpenMRS context so it can be accessed
-    calling Context.getService(PatientqueuappService.class) -->
-    <bean parent="serviceContext">
-        <property name="moduleService">
-            <list>
-                <value>org.openmrs.module.patientqueuapp.api.PatientqueuappService</value>
-                <ref bean="patientqueuapp.PatientqueuappService" />
-            </list>
-        </property>
-    </bean>
+    <!-- Services accessible via Context.getService() -->
 </beans>
